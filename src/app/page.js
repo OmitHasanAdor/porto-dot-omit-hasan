@@ -1,9 +1,19 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Services from "@/components/Services";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
-    <div className="">
-      <h3>My Porto</h3>
-    </div>
+    <>
+      <Navbar />
+      <Hero />
+      <About />
+      <Skills />
+      <Services />
+      <Projects></Projects>
+    </>
   );
 }
