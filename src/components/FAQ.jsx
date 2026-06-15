@@ -1,11 +1,16 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionItem,
-} from "@heroui/react";
+import { useState } from "react";
+import { faqs } from "@/data/faqs";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function FAQ() {
+  const [openId, setOpenId] = useState(null);
+
+  const handleToggle = (id) => {
+    setOpenId(openId === id ? null : id);
+  };
+
   return (
     <section
       id="faq"
@@ -23,45 +28,36 @@ export default function FAQ() {
           </h2>
         </div>
 
-        <Accordion variant="bordered">
+        <div className="space-y-4">
+          {faqs.map((faq) => (
+            <div
+              key={faq.id}
+              className="bg-[#0d0d0d] border border-white/10 rounded-xl overflow-hidden"
+            >
+              <button
+                onClick={() => handleToggle(faq.id)}
+                className="w-full flex items-center justify-between p-5 text-left"
+              >
+                <span className="text-white font-semibold">
+                  {faq.question}
+                </span>
 
-          <AccordionItem
-            key="1"
-            aria-label="faq1"
-            title="Why hire me?"
-          >
-            I build modern, responsive and user-friendly web
-            applications with clean code and attention to detail.
-          </AccordionItem>
+                <FaChevronDown
+                  className={`transition-transform duration-300 ${
+                    openId === faq.id ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
-          <AccordionItem
-            key="2"
-            aria-label="faq2"
-            title="Which technologies do you use?"
-          >
-            React.js, Next.js, Tailwind CSS, MongoDB,
-            Node.js, Express.js and modern frontend tools.
-          </AccordionItem>
+              {openId === faq.id && (
+                <div className="px-5 pb-5 text-gray-300">
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
-          <AccordionItem
-            key="3"
-            aria-label="faq3"
-            title="Do you build responsive websites?"
-          >
-            Yes. Every website I build is optimized for
-            desktop, tablet and mobile devices.
-          </AccordionItem>
-
-          <AccordionItem
-            key="4"
-            aria-label="faq4"
-            title="Are you available for freelance work?"
-          >
-            Yes. I am available for freelance projects,
-            collaborations and remote opportunities.
-          </AccordionItem>
-
-        </Accordion>
       </div>
     </section>
   );

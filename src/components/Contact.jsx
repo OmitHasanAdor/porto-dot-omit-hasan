@@ -2,6 +2,8 @@
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { contactInfo } from "@/data/contact";
+import Link from "next/link";
 
 export default function Contact() {
   return (
@@ -37,52 +39,81 @@ export default function Contact() {
 
             <div className="space-y-5">
 
-              <a
-                href="mailto:ibneshams05@gmail.com"
+              <Link
+                href={`mailto:${contactInfo.email}`}
                 className="flex items-center gap-4 text-gray-300 hover:text-cyan-400"
               >
                 <MdEmail size={24} />
                 ibneshams05@gmail.com
-              </a>
+              </Link>
 
-              <a
-                href="https://github.com/OmitHasanAdor"
+              <Link
+                href={contactInfo.github}
                 target="_blank"
                 className="flex items-center gap-4 text-gray-300 hover:text-cyan-400"
               >
                 <FaGithub size={24} />
                 GitHub
-              </a>
+              </Link>
 
-              <a
-                href="https://linkedin.com/in/omit-hasan-ador"
+              <Link
+                href={contactInfo.linkedin}
                 target="_blank"
                 className="flex items-center gap-4 text-gray-300 hover:text-cyan-400"
               >
                 <FaLinkedin size={24} />
                 LinkedIn
-              </a>
+              </Link>
+
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mt-8">
+
+              <div className="bg-[#0d0d0d] p-4 rounded-xl border border-white/10">
+                <p className="text-gray-400 text-sm">
+                  Availability
+                </p>
+
+                <h4 className="text-white font-semibold">
+                  {contactInfo.availability}
+                </h4>
+              </div>
+
+              <div className="bg-[#0d0d0d] p-4 rounded-xl border border-white/10">
+                <p className="text-gray-400 text-sm">
+                  Response Time
+                </p>
+
+                <h4 className="text-white font-semibold">
+                  {contactInfo.responseTime}
+                </h4>
+              </div>
 
             </div>
           </div>
 
           {/* Right */}
 
-          <form className="space-y-5">
+          <form action="https://formspree.io/f/mbdewppk"
+            method="POST"
+            className="space-y-5">
 
             <input
               type="text"
+               name="name"
               placeholder="Your Name"
               className="w-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-white"
             />
 
             <input
               type="email"
+               name="email"
               placeholder="Your Email"
               className="w-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-white"
             />
 
             <textarea
+              name="message"
               rows="6"
               placeholder="Your Message"
               className="w-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-white"
