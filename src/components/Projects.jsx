@@ -4,8 +4,18 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { useState } from "react";
+import ProjectModal from "./ProjectModal";
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDetails = (project) => {
+    setSelectedProject(project);
+    setIsOpen(true);
+  };
+
   return (
     <section
       id="projects"
@@ -34,8 +44,8 @@ export default function Projects() {
               transition={{ delay: index * 0.15 }}
               className="group overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d0d]"
             >
-              {/* Image */}
 
+              {/* Project Image */}
               <div className="relative overflow-hidden">
                 <Image
                   src={project.image}
@@ -45,19 +55,17 @@ export default function Projects() {
                   className="h-60 w-full object-cover transition duration-500 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center gap-4">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    className="bg-cyan-500 text-black px-4 py-2 rounded-full font-medium"
+                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                  <button
+                    onClick={() => handleDetails(project)}
+                    className="bg-cyan-500 text-black px-5 py-2 rounded-full font-semibold"
                   >
-                    Live Demo
-                  </a>
+                    View Details
+                  </button>
                 </div>
               </div>
 
               {/* Content */}
-
               <div className="p-6">
 
                 <h3 className="text-2xl font-bold text-white mb-3">
@@ -79,7 +87,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex gap-3 flex-wrap">
 
                   <a
                     href={project.live}
@@ -99,12 +107,26 @@ export default function Projects() {
                     GitHub
                   </a>
 
+                  <button
+                    onClick={() => handleDetails(project)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white"
+                  >
+                    Details
+                  </button>
+
                 </div>
 
               </div>
             </motion.div>
           ))}
         </div>
+
+        <ProjectModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          project={selectedProject}
+        />
+
       </div>
     </section>
   );

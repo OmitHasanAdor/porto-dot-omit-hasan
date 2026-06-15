@@ -1,23 +1,38 @@
 export const projects = [
   {
     title: "WanderLast",
-    image: "/projects/wanderlast.png",
-    description:
-      "A modern travel and booking platform with responsive UI and seamless user experience.",
+    image: "/wanderlast.png",
 
-    live: "https://module52-wanderlast-booking-project.vercel.app",
+    description:
+      "A modern travel and booking platform.",
+
+    live:
+      "https://module52-wanderlast-booking-project.vercel.app",
 
     github:
       "https://github.com/OmitHasanAdor/module52-wanderlast-booking-project",
 
-    tech: ["React", "MongoDB", "Firebase", "Tailwind"],
+    tech: [
+      "React",
+      "MongoDB",
+      "Firebase",
+      "Tailwind",
+    ],
+
+    features: [
+      "User authentication",
+      "Responsive UI",
+      "Booking management",
+      "Dynamic routing",
+    ],
   },
 
   {
     title: "SunCart",
-    image: "/projects/suncart.png",
+    image: "/suncart.png",
+
     description:
-      "Authentication-focused e-commerce platform built using Next.js.",
+      "Authentication-focused e-commerce platform.",
 
     live:
       "https://assignment8-auth-nextjs-project.vercel.app",
@@ -25,14 +40,26 @@ export const projects = [
     github:
       "https://github.com/OmitHasanAdor/assignment8-auth-nextjs-project",
 
-    tech: ["Next.js", "Tailwind", "Auth"],
+    tech: [
+      "Next.js",
+      "Tailwind",
+      "Auth",
+    ],
+
+    features: [
+      "Secure authentication",
+      "Protected routes",
+      "Responsive design",
+      "Modern UI",
+    ],
   },
 
   {
     title: "MediQueue",
-    image: "/projects/mediqueue.png",
+    image: "/mediqueue.png",
+
     description:
-      "Tutor booking system connecting students and tutors with modern UI.",
+      "Tutor booking system with authentication.",
 
     live:
       "https://ass8-mediqueue-totor-booking-system.vercel.app",
@@ -40,6 +67,17 @@ export const projects = [
     github:
       "https://github.com/OmitHasanAdor/ass8-mediqueue-totor-booking-system",
 
-    tech: ["Next.js", "MongoDB", "Better Auth"],
+    tech: [
+      "Next.js",
+      "MongoDB",
+      "Better Auth",
+    ],
+
+    features: [
+      "Tutor booking",
+      "Authentication",
+      "Responsive design",
+      "Session management",
+    ],
   },
 ];
