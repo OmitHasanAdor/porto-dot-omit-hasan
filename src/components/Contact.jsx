@@ -4,8 +4,39 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { contactInfo } from "@/data/contact";
 import Link from "next/link";
+import { useState } from "react";
+
 
 export default function Contact() {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+
+    const response = await fetch(
+      "https://formspree.io/f/mbdewppk",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      setSuccess(true);
+      e.target.reset();
+    }
+
+    setLoading(false);
+  };
+
   return (
     <section
       id="contact"
@@ -94,9 +125,9 @@ export default function Contact() {
 
           {/* Right */}
 
-          <form action="https://formspree.io/f/mbdewppk"
-            method="POST"
-            className="space-y-5">
+          <form onSubmit={handleSubmit}
+            className="space-y-5"
+          >
 
             <input
               type="text"
@@ -121,16 +152,16 @@ export default function Contact() {
 
             <button
               type="submit"
+              disabled={loading}
               className="px-8 py-3 rounded-full bg-cyan-500 text-black font-semibold"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
-            <input
-              type="hidden"
-              name="_next"
-              value="https://porto-dot-omit-hasan.vercel.app/"
-            />
-
+            {success && (
+              <p className="text-green-500">
+                Message sent successfully!
+              </p>
+            )}
           </form>
 
         </div>
