@@ -153,7 +153,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="px-8 py-3 rounded-full bg-cyan-500 text-black font-semibold"
+              className="px-8 py-3 cursor-pointer rounded-full bg-cyan-500 text-black font-semibold"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>

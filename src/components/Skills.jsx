@@ -6,7 +6,9 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaGithub,
+  FaBrain,
 } from "react-icons/fa";
+import { PiFigmaLogoDuotone } from "react-icons/pi";
 
 import {
   SiNextdotjs,
@@ -17,6 +19,8 @@ import {
   SiVercel,
   SiHtml5,
   SiCss,
+  SiBetterauth,
+  SiMongoose,
 } from "react-icons/si";
 const skillGroups = [
   {
@@ -25,7 +29,7 @@ const skillGroups = [
       { name: "React", icon: <FaReact /> },
       { name: "Next.js", icon: <SiNextdotjs /> },
       { name: "JavaScript", icon: <SiJavascript /> },
-      { name: "HTML5", icon: <SiHtml5 /> },
+     
       { name: "CSS3", icon: <SiCss /> },
       { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     ],
@@ -37,6 +41,8 @@ const skillGroups = [
       { name: "Node.js", icon: <FaNodeJs /> },
       { name: "Express.js", icon: <SiExpress /> },
       { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Mongoose", icon: <SiMongoose />},
+      { name: "Betterauth", icon: <SiBetterauth /> }
     ],
   },
 
@@ -46,6 +52,9 @@ const skillGroups = [
       { name: "Git", icon: <FaGitAlt /> },
       { name: "GitHub", icon: <FaGithub /> },
       { name: "Vercel", icon: <SiVercel /> },
+      { name: "Figma", icon: <PiFigmaLogoDuotone /> },
+      { name: "AI Integration", icon: <FaBrain /> }
+     
     ],
   },
 ];
