@@ -100,14 +100,14 @@ export default function Contact() {
 
             <input
               type="text"
-               name="name"
+              name="name"
               placeholder="Your Name"
               className="w-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-white"
             />
 
             <input
               type="email"
-               name="email"
+              name="email"
               placeholder="Your Email"
               className="w-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-white"
             />
@@ -125,6 +125,11 @@ export default function Contact() {
             >
               Send Message
             </button>
+            <input
+              type="hidden"
+              name="_next"
+              value="https://porto-dot-omit-hasan.vercel.app/"
+            />
 
           </form>
 
