@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -17,6 +18,32 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) =>
+        observer.unobserve(section)
+      );
+    };
+  }, []);
 
   return (
     <motion.nav
@@ -26,7 +53,7 @@ export default function Navbar() {
       className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl"
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
+
         {/* Logo */}
         <Link href="/">
           <div>
@@ -45,7 +72,10 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="text-gray-300 hover:text-cyan-400 transition"
+              className={`transition px-3 py-2 rounded-lg ${activeSection === item.href.replace("#", "")
+                ? "text-cyan-400 bg-cyan-500/10"
+                : "text-gray-300 hover:text-cyan-400"
+                }`}
             >
               {item.label}
             </a>
@@ -84,7 +114,10 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-gray-300 hover:text-cyan-400 transition"
+                className={`transition ${activeSection === item.href.replace("#", "")
+                    ? "text-cyan-400"
+                    : "text-gray-300 hover:text-cyan-400"
+                  }`}
               >
                 {item.label}
               </a>

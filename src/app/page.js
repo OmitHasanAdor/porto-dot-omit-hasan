@@ -7,11 +7,13 @@ import Projects from "@/components/Projects";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
     <>
       <Navbar />
+      <ScrollProgress />
       <Hero />
       <About />
       <Skills />
