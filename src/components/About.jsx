@@ -1,28 +1,61 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+
+function Counter({ value, suffix }) {
+  const nodeRef = useRef(null);
+  const motionValue = useMotionValue(0);
+  const rounded = useTransform(motionValue, (latest) => Math.round(latest));
+  
+  const isInView = useInView(nodeRef, { 
+    once: true, 
+    margin: "-100px" 
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(motionValue, value, {
+        duration: 2, 
+        ease: "easeOut",
+      });
+
+      return () => controls.stop();
+    }
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    return rounded.on("change", (latest) => {
+      if (nodeRef.current) {
+        nodeRef.current.textContent = latest + suffix;
+      }
+    });
+  }, [rounded, suffix]);
+
+  return <span ref={nodeRef}>0{suffix}</span>;
+}
 
 const stats = [
   {
-    number: "3+",
+    targetNumber: 6,
+    suffix: "+",
     title: "Real Projects",
   },
   {
-    number: "10+",
+    targetNumber: 10,
+    suffix: "+",
     title: "Technologies",
   },
   {
-    number: "100%",
+    targetNumber: 100,
+    suffix: "%",
     title: "Responsive Design",
   },
 ];
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="py-24 bg-[#050505]"
-    >
+    <section id="about" className="py-24 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -32,18 +65,13 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-cyan-400 mb-3">
-            Get To Know Me
-          </p>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
-            About Me
-          </h2>
+          <p className="text-cyan-400 mb-3">Get To Know Me</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">About Me</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* Left */}
+          {/* Left Description */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -54,19 +82,16 @@ export default function About() {
             </h3>
 
             <p className="text-gray-400 leading-8 text-lg">
-              I am a passionate MERN Stack Developer from Bangladesh
-              who enjoys building modern, responsive and user-friendly
-              web applications.
-
-              My focus is creating fast, scalable and visually
-              appealing digital experiences using React, Next.js,
-              MongoDB and modern frontend technologies.
+              I am a passionate MERN Stack Developer from Bangladesh who enjoys
+              building modern, responsive and user-friendly web applications.
+              My focus is creating fast, scalable and visually appealing digital
+              experiences using React, Next.js, MongoDB and modern frontend
+              technologies.
             </p>
 
             <p className="text-gray-400 leading-8 text-lg mt-6">
-              I am currently expanding my backend development skills
-              while building real-world projects and preparing for
-              freelance and remote opportunities.
+              I am currently expanding my backend development skills while building
+              real-world projects and preparing for freelance and remote opportunities.
             </p>
           </motion.div>
 
@@ -82,12 +107,10 @@ export default function About() {
                 className="bg-[#0d0d0d] border border-white/10 rounded-3xl p-8 hover:border-cyan-500/50 transition"
               >
                 <h3 className="text-4xl font-bold text-cyan-400 mb-2">
-                  {item.number}
+                  <Counter value={item.targetNumber} suffix={item.suffix} />
                 </h3>
 
-                <p className="text-gray-300">
-                  {item.title}
-                </p>
+                <p className="text-gray-300">{item.title}</p>
               </motion.div>
             ))}
           </div>
