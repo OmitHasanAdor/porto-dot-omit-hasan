@@ -37,7 +37,7 @@ function Counter({ value, suffix }) {
 
 const stats = [
   {
-    targetNumber: 6,
+    targetNumber: 10,
     suffix: "+",
     title: "Real Projects",
   },
