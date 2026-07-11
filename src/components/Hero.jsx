@@ -9,16 +9,18 @@ import { MdEmail } from "react-icons/md";
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-[#050505] flex items-center overflow-hidden pt-24">
-      {/* Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00f5ff15,transparent_60%)]" />
+      {/* Background Glow - pointer-events-none যোগ করা হয়েছে */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00f5ff15,transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center">
+      {/* Grid Container - relative z-10 দেওয়া হয়েছে */}
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
 
-        {/* Left Section */}
+        {/* Left Section (Content & Buttons) - relative z-20 দেওয়া হয়েছে যাতে ইমেজের বড় বর্ডার একে ঢাকতে না পারে */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
+          className="relative z-20"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
             Hi, I&apos;m
@@ -52,20 +54,22 @@ export default function Hero() {
             applications.
           </p>
 
+          {/* Action Buttons */}
           <div className="flex gap-4 mt-8">
-            <a href="#projects">
-              <button className="px-6 py-3 bg-cyan-500 text-black font-semibold rounded-xl hover:scale-105 transition">
+            <a href="#projects" className="inline-block">
+              <button className="px-6 py-3 bg-cyan-500 text-black font-semibold rounded-xl hover:scale-105 transition cursor-pointer">
                 View Projects
               </button>
             </a>
 
-            <a href="/resume.pdf">
-              <button className="px-6 py-3 border border-cyan-500 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition">
+            <a href="/resume.pdf" className="inline-block">
+              <button className="px-6 py-3 border border-cyan-500 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition cursor-pointer">
                 Download Resume
               </button>
             </a>
           </div>
 
+          {/* Social Links */}
           <div className="flex gap-5 mt-8 text-2xl text-gray-400">
             <a href="https://github.com/OmitHasanAdor" target="_blank" rel="noreferrer">
               <FaGithub className="hover:text-cyan-400 transition" />
@@ -81,7 +85,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Right Section (Image with Rotating Border & Floating Badge) */}
+        {/* Right Section (Image & Animation) */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -90,9 +94,9 @@ export default function Hero() {
         >
           {/* Main Container */}
           <div className="relative group p-0.75 rounded-[26px] overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-0 blur-3xl bg-cyan-500/20 rounded-full" />
+            <div className="absolute inset-0 blur-3xl bg-cyan-500/20 rounded-full pointer-events-none" />
 
-            {/* 360 Degree Rotating Gradient Border Background */}
+            {/* 360 Degree Rotating Border - pointer-events-none যোগ করা হয়েছে */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{
@@ -100,10 +104,10 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_40%,#00f5ff_70%,transparent_100%)] z-0"
+              className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_40%,#00f5ff_70%,transparent_100%)] z-0 pointer-events-none"
             />
 
-            {/* Inner Wrapper to hold the main content and hide outer overflows */}
+            {/* Inner Wrapper */}
             <div className="relative z-10 bg-[#050505] p-1 rounded-[24px] overflow-hidden w-full h-full flex items-center justify-center">
               
               <Image
@@ -115,7 +119,7 @@ export default function Hero() {
                 className="relative z-10 object-cover rounded-[22px]"
               />
 
-              {/* Floating Badge Component */}
+              {/* Floating Badge */}
               <motion.div
                 initial={{ y: 0 }}
                 animate={{ y: [0, -8, 0] }}
@@ -135,7 +139,6 @@ export default function Hero() {
                   </h4>
                 </div>
                 
-                {/* Right Circle Icon Button */}
                 <div className="w-9 h-9 rounded-full bg-cyan-500 flex items-center justify-center text-black text-sm group-hover:rotate-45 transition-transform duration-300">
                   <FaArrowRight />
                 </div>
