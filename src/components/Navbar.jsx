@@ -126,7 +126,7 @@ export default function Navbar() {
             <a
               href="/resume.pdf"
               target="_blank"
-              className="bg-cyan-500 absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_40%,#00f5ff_70%,transparent_100%)] z-0 text-black text-center py-3 rounded-xl font-semibold"
+              className="bg-cyan-500 text-black text-center py-3 rounded-xl font-semibold"
             >
               Download Resume
             </a>
