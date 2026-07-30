@@ -87,7 +87,7 @@ export default function Navbar() {
           <Button
             as="a"
             href="/resume.pdf"
-            target="_blank"
+           download
             className="bg-cyan-500 text-black font-semibold"
           >
             Resume
@@ -125,7 +125,7 @@ export default function Navbar() {
 
             <a
               href="/resume.pdf"
-              target="_blank"
+              download
               className="bg-cyan-500 text-black text-center py-3 rounded-xl font-semibold"
             >
               Download Resume
