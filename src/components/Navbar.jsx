@@ -84,29 +84,26 @@ export default function Navbar() {
 
         {/* Desktop Resume Button */}
         <div className="hidden md:block">
-          <a href="/resume.pdf" download>
-            <motion.div
-              animate={{
-                scale: [1, 1.06, 1],
-                boxShadow: [
-                  "0 0 0px rgba(34,211,238,0)",
-                  "0 0 24px rgba(34,211,238,0.7)",
-                  "0 0 0px rgba(34,211,238,0)",
-                ],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                repeatDelay: 3,
-                ease: "easeInOut",
-              }}
-              className="rounded-xl"
-            >
-              <Button className="bg-cyan-500 text-black font-semibold">
-                Resume
-              </Button>
-            </motion.div>
-          </a>
+         <motion.a
+  href="/resume.pdf"
+  download
+  animate={{
+    scale: [1, 1.06, 1],
+    boxShadow: [
+      "0 0 0px rgba(34,211,238,0)",
+      "0 0 25px rgba(34,211,238,.9)",
+      "0 0 0px rgba(34,211,238,0)",
+    ],
+  }}
+  transition={{
+    duration: 1.8,
+    repeat: Infinity,
+    repeatDelay: 3,
+  }}
+  className="inline-flex items-center px-5 py-2.5 rounded-xl bg-cyan-500 text-black font-semibold"
+>
+  Resume
+</motion.a>
         </div>
 
         {/* Mobile Menu Button */}
