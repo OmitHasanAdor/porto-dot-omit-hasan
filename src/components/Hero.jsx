@@ -62,7 +62,7 @@ export default function Hero() {
               </button>
             </a>
 
-            <a href="/resume.pdf" className="inline-block">
+            <a href="/resume.pdf" download className="inline-block">
               <button className="px-6 py-3 border border-cyan-500 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition cursor-pointer">
                 Download Resume
               </button>
