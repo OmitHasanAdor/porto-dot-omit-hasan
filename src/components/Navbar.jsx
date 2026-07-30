@@ -84,14 +84,11 @@ export default function Navbar() {
 
         {/* Desktop Resume Button */}
         <div className="hidden md:block">
-          <Button
-            as="a"
-            href="/resume.pdf"
-           download
-            className="bg-cyan-500 text-black font-semibold"
-          >
-            Resume
-          </Button>
+          <a href="/resume.pdf" download>
+            <Button className="bg-cyan-500 text-black font-semibold">
+              Resume
+            </Button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -115,8 +112,8 @@ export default function Navbar() {
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className={`transition ${activeSection === item.href.replace("#", "")
-                    ? "text-cyan-400"
-                    : "text-gray-300 hover:text-cyan-400"
+                  ? "text-cyan-400"
+                  : "text-gray-300 hover:text-cyan-400"
                   }`}
               >
                 {item.label}
