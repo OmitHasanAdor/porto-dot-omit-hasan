@@ -13,9 +13,9 @@ export const projects = [
       "https://github.com/OmitHasanAdor/module52-wanderlast-booking-project",
 
     tech: [
-      "React",
+      "Next.js",
       "MongoDB",
-      "Firebase",
+      "Better Auth",
       "Tailwind",
     ],
 
@@ -42,8 +42,9 @@ export const projects = [
 
     tech: [
       "Next.js",
+      "TypeScript",
       "Tailwind",
-      "Auth",
+      "Better Auth",
     ],
 
     features: [
@@ -69,6 +70,7 @@ export const projects = [
 
     tech: [
       "Next.js",
+      "Tailwind",
       "MongoDB",
       "Better Auth",
     ],
