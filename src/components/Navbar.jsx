@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -17,6 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -29,15 +31,17 @@ export default function Navbar() {
           }
         });
       },
-      {
-        threshold: 0.4,
-      }
+      { threshold: 0.4 },
     );
 
     sections.forEach((section) => observer.observe(section));
 
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
       sections.forEach((section) => observer.unobserve(section));
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -46,29 +50,24 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 z-50 w-full liquid-glass"
+      className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
+        scrolled ? "border-b border-border bg-background/70 backdrop-blur-xl" : "bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/">
-          <div>
-            <h2 className="text-2xl font-bold font-display text-[var(--foreground)]">
-              O<span className="text-accent">A</span>
-            </h2>
-            <p className="text-[10px] text-muted">Developer</p>
-          </div>
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <Link href="/" className="font-display text-2xl leading-none text-foreground">
+          Omit<span className="text-muted-foreground"> Hasan Ador</span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className={`transition px-3 py-2 rounded-lg ${
+              className={`rounded-full px-4 py-2 text-sm transition ${
                 activeSection === item.href.replace("#", "")
-                  ? "text-accent"
-                  : "text-muted hover:text-accent"
+                  ? "bg-white/10 text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {item.label}
@@ -76,32 +75,24 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop Resume Button */}
         <div className="hidden md:block">
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-flex items-center px-5 py-2.5 liquid-glass rounded-full text-[var(--foreground)] font-semibold hover:text-accent transition"
-          >
+          <Button as="a" href="/resume.pdf" download variant="glass" size="sm">
             Resume
-          </a>
+          </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-[var(--foreground)] text-2xl hover:text-accent transition"
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-2xl text-foreground md:hidden"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden liquid-glass">
-          <div className="flex flex-col p-6 gap-5">
+        <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-4 p-6">
             {navLinks.map((item) => (
               <a
                 key={item.label}
@@ -109,8 +100,8 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className={`transition ${
                   activeSection === item.href.replace("#", "")
-                    ? "text-accent"
-                    : "text-muted hover:text-accent"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -120,7 +111,7 @@ export default function Navbar() {
             <a
               href="/resume.pdf"
               download
-              className="liquid-glass text-[var(--foreground)] text-center py-3 rounded-full font-semibold hover:text-accent transition"
+              className="liquid-glass rounded-full py-3 text-center font-medium text-foreground"
             >
               Download Resume
             </a>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { faqs } from "@/data/faqs";
 import { FaChevronDown } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function FAQ() {
   const [openId, setOpenId] = useState(null);
@@ -12,38 +13,37 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="section-py">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-accent mb-3">Frequently Asked Questions</p>
-          <h2 className="text-4xl font-bold font-display text-[var(--foreground)]">FAQ</h2>
-        </div>
+    <section id="faq" className="bg-background py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 max-w-2xl"
+        >
+          <h2 className="font-display text-4xl sm:text-5xl">FAQ</h2>
+        </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq) => (
             <div
               key={faq.id}
-              className="liquid-glass rounded-2xl overflow-hidden"
+              className="overflow-hidden rounded-2xl border border-border bg-card"
             >
               <button
                 onClick={() => handleToggle(faq.id)}
-                className="w-full flex items-center justify-between p-5 text-left"
+                className="flex w-full items-center justify-between p-5 text-left"
               >
-                <span className="text-[var(--foreground)] font-semibold">
-                  {faq.question}
-                </span>
-
+                <span className="font-medium text-foreground">{faq.question}</span>
                 <FaChevronDown
-                  className={`text-accent transition-transform duration-300 ${
+                  className={`shrink-0 text-muted-foreground transition-transform duration-300 ${
                     openId === faq.id ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
               {openId === faq.id && (
-                <div className="px-5 pb-5 text-muted">
-                  {faq.answer}
-                </div>
+                <div className="px-5 pb-5 text-muted-foreground">{faq.answer}</div>
               )}
             </div>
           ))}

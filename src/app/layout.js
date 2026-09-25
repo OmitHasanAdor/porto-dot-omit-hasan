@@ -3,23 +3,23 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
 const instrumentSerif = Instrument_Serif({
+  variable: "--font-display",
   weight: "400",
-  subsets: ["latin"],
   style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
-  display: "swap",
+  subsets: ["latin"],
 });
 
 const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
 });
 
 export const metadata = {
   title: "Omit Hasan Ador | MERN Stack Developer",
+
   description:
     "Frontend-focused MERN Stack Developer from Bangladesh specializing in React, Next.js and modern web applications.",
+
   keywords: [
     "MERN Developer",
     "React Developer",
@@ -27,7 +27,9 @@ export const metadata = {
     "Frontend Developer",
     "Bangladesh Developer",
   ],
+
   authors: [{ name: "Omit Hasan Ador" }],
+
   openGraph: {
     title: "Omit Hasan Ador",
     description: "Frontend-focused MERN Stack Developer",
@@ -43,12 +45,14 @@ export const metadata = {
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Omit Hasan Ador",
     description: "Frontend-focused MERN Stack Developer",
     images: ["/og-image.png"],
   },
+
   metadataBase: new URL("https://porto-dot-omit-hasan.vercel.app"),
 };
 
@@ -56,9 +60,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${inter.variable} h-full`}
+      className={`${instrumentSerif.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col antialiased">
+      <body className="flex min-h-full flex-col">
         {children}
         <Analytics />
       </body>

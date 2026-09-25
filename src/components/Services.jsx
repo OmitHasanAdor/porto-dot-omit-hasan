@@ -27,43 +27,27 @@ const services = [
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      className="section-py"
-    >
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="bg-background py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 max-w-2xl"
+        >
+          <h2 className="font-display text-4xl sm:text-5xl">Services</h2>
+        </motion.div>
 
-        <div className="text-center mb-16">
-          <p className="text-accent mb-3 text-sm tracking-wide">
-            What I Offer
-          </p>
-
-          <h2 className="text-4xl md:text-5xl font-display text-white">
-            Services
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group liquid-glass rounded-3xl p-8 transition-all duration-300"
+              className="rounded-3xl border border-border bg-card p-8 transition hover:border-white/20"
             >
-              <h3 className="text-2xl font-display text-white mb-4 group-hover:text-accent transition">
-                {service.title}
-              </h3>
-
-              <p className="text-muted leading-7">
-                {service.desc}
-              </p>
-            </motion.div>
+              <h3 className="mb-3 text-xl font-semibold">{service.title}</h3>
+              <p className="leading-7 text-muted-foreground">{service.desc}</p>
+            </div>
           ))}
-
         </div>
       </div>
     </section>
