@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -39,9 +37,7 @@ export default function Navbar() {
     sections.forEach((section) => observer.observe(section));
 
     return () => {
-      sections.forEach((section) =>
-        observer.unobserve(section)
-      );
+      sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
 
@@ -50,19 +46,16 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl"
+      className="fixed top-0 z-50 w-full liquid-glass"
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-
         {/* Logo */}
         <Link href="/">
           <div>
-            <h2 className="text-2xl font-bold text-white">
-              O<span className="text-cyan-400">A</span>
+            <h2 className="text-2xl font-bold font-display text-[var(--foreground)]">
+              O<span className="text-accent">A</span>
             </h2>
-            <p className="text-[10px] text-gray-400">
-              Developer
-            </p>
+            <p className="text-[10px] text-muted">Developer</p>
           </div>
         </Link>
 
@@ -72,10 +65,11 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className={`transition px-3 py-2 rounded-lg ${activeSection === item.href.replace("#", "")
-                ? "text-cyan-400 bg-cyan-500/10"
-                : "text-gray-300 hover:text-cyan-400"
-                }`}
+              className={`transition px-3 py-2 rounded-lg ${
+                activeSection === item.href.replace("#", "")
+                  ? "text-accent"
+                  : "text-muted hover:text-accent"
+              }`}
             >
               {item.label}
             </a>
@@ -84,33 +78,20 @@ export default function Navbar() {
 
         {/* Desktop Resume Button */}
         <div className="hidden md:block">
-         <motion.a
-  href="/resume.pdf"
-  download
-  animate={{
-    scale: [1, 1.06, 1],
-    boxShadow: [
-      "0 0 0px rgba(34,211,238,0)",
-      "0 0 25px rgba(34,211,238,.9)",
-      "0 0 0px rgba(34,211,238,0)",
-    ],
-  }}
-  transition={{
-    duration: 1.8,
-    repeat: Infinity,
-    repeatDelay: 3,
-  }}
-  className="inline-flex items-center px-5 py-2.5 rounded-xl bg-cyan-500 text-black font-semibold"
->
-  Resume
-</motion.a>
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex items-center px-5 py-2.5 liquid-glass rounded-full text-[var(--foreground)] font-semibold hover:text-accent transition"
+          >
+            Resume
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white text-2xl"
+            className="text-[var(--foreground)] text-2xl hover:text-accent transition"
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -119,17 +100,18 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+        <div className="md:hidden liquid-glass">
           <div className="flex flex-col p-6 gap-5">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`transition ${activeSection === item.href.replace("#", "")
-                  ? "text-cyan-400"
-                  : "text-gray-300 hover:text-cyan-400"
-                  }`}
+                className={`transition ${
+                  activeSection === item.href.replace("#", "")
+                    ? "text-accent"
+                    : "text-muted hover:text-accent"
+                }`}
               >
                 {item.label}
               </a>
@@ -138,7 +120,7 @@ export default function Navbar() {
             <a
               href="/resume.pdf"
               download
-              className="bg-cyan-500 text-black text-center py-3 rounded-xl font-semibold"
+              className="liquid-glass text-[var(--foreground)] text-center py-3 rounded-full font-semibold hover:text-accent transition"
             >
               Download Resume
             </a>

@@ -1,38 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-[#050505] flex items-center overflow-hidden pt-24">
-      {/* Background Glow - pointer-events-none যোগ করা হয়েছে */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00f5ff15,transparent_60%)] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.20_0.04_230),transparent_70%)] pointer-events-none" />
 
-      {/* Grid Container - relative z-10 দেওয়া হয়েছে */}
+      {/* Grid Container */}
       <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
 
-        {/* Left Section (Content & Buttons) - relative z-20 দেওয়া হয়েছে যাতে ইমেজের বড় বর্ডার একে ঢাকতে না পারে */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          className="relative z-20"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Hi, I&apos;m
-            <span className="block text-cyan-400">
+        {/* Left Section (Content & Buttons) */}
+        <div className="relative z-20">
+          <div className="animate-fade-rise inline-flex items-center gap-2 px-4 py-2 liquid-glass rounded-full text-accent text-sm mb-5 mt-3">
+            ✦ Available For Freelance Work
+          </div>
+
+          <h1 className="animate-fade-rise-delay font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <span className="text-white block">Hi, I&apos;m</span>
+            <span className="block text-muted">
               Omit Hasan Ador
             </span>
           </h1>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm mb-5 mt-3">
-            Available For Freelance Work
-          </div>
 
-          <div className="text-2xl lg:text-4xl font-semibold text-gray-300 mt-4 h-16">
+          <div className="animate-fade-rise-delay-2 text-xl lg:text-2xl font-semibold text-muted mt-4 h-16">
             <TypeAnimation
               sequence={[
                 "Frontend Developer",
@@ -48,105 +43,60 @@ export default function Hero() {
             />
           </div>
 
-          <p className="text-gray-400 text-lg mt-6 max-w-xl">
+          <p className="animate-fade-rise-delay-2 text-muted text-lg mt-6 max-w-xl">
             I am a Frontend-focused MERN Stack Developer from Bangladesh,
             specializing in modern, responsive and high-performance web
             applications.
           </p>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mt-8">
+          <div className="animate-fade-rise-delay-2 flex flex-wrap gap-4 mt-8">
             <a href="#projects" className="inline-block">
-              <button className="px-6 py-3 bg-cyan-500 text-black font-semibold rounded-xl hover:scale-105 transition cursor-pointer">
+              <button className="px-8 py-3 liquid-glass text-[var(--foreground)] font-semibold rounded-full hover:scale-105 transition cursor-pointer">
                 View Projects
               </button>
             </a>
 
             <a href="/resume.pdf" download className="inline-block">
-              <button className="px-6 py-3 border border-cyan-500 text-cyan-400 rounded-xl hover:bg-cyan-500/10 transition cursor-pointer">
+              <button className="px-8 py-3 liquid-glass text-[var(--foreground)] rounded-full hover:text-accent transition cursor-pointer">
                 Download Resume
               </button>
             </a>
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-5 mt-8 text-2xl text-gray-400">
+          <div className="animate-fade-rise-delay-2 flex gap-5 mt-8 text-2xl text-muted">
             <a href="https://github.com/OmitHasanAdor" target="_blank" rel="noreferrer">
-              <FaGithub className="hover:text-cyan-400 transition" />
+              <FaGithub className="hover:text-[var(--foreground)] transition" />
             </a>
 
             <a href="https://linkedin.com/in/omit-hasan-ador" target="_blank" rel="noreferrer">
-              <FaLinkedin className="hover:text-cyan-400 transition" />
+              <FaLinkedin className="hover:text-[var(--foreground)] transition" />
             </a>
 
             <a href="mailto:ibneshams05@gmail.com">
-              <MdEmail className="hover:text-cyan-400 transition" />
+              <MdEmail className="hover:text-[var(--foreground)] transition" />
             </a>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Section (Image & Animation) */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          className="flex justify-center"
-        >
+        <div className="flex justify-center animate-fade-rise-delay">
           {/* Main Container */}
-          <div className="relative group p-0.75 rounded-[26px] overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-0 blur-3xl bg-cyan-500/20 rounded-full pointer-events-none" />
-
-            {/* 360 Degree Rotating Border - pointer-events-none যোগ করা হয়েছে */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="absolute w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_40%,#00f5ff_70%,transparent_100%)] z-0 pointer-events-none"
-            />
-
+          <div className="relative group p-1.5 liquid-glass rounded-3xl overflow-hidden flex items-center justify-center animate-float">
             {/* Inner Wrapper */}
-            <div className="relative z-10 bg-[#050505] p-1 rounded-[24px] overflow-hidden w-full h-full flex items-center justify-center">
-              
+            <div className="relative z-10 w-full h-full flex items-center justify-center rounded-3xl overflow-hidden">
               <Image
                 src="/profile1.png"
                 alt="Omit Hasan Ador"
                 width={500}
                 height={500}
                 priority
-                className="relative z-10 object-cover rounded-[22px]"
+                className="relative z-10 object-cover rounded-3xl"
               />
-
-              {/* Floating Badge */}
-              <motion.div
-                initial={{ y: 0 }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between p-4 rounded-2xl bg-[#0d1117]/90 backdrop-blur-md border border-cyan-500/10 shadow-2xl"
-              >
-                <div>
-                  <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">
-                    MERN Developer
-                  </p>
-                  <h4 className="text-white font-semibold text-base mt-0.5">
-                    Omit Hasan Ador
-                  </h4>
-                </div>
-                
-                <div className="w-9 h-9 rounded-full bg-cyan-500 flex items-center justify-center text-black text-sm group-hover:rotate-45 transition-transform duration-300">
-                  <FaArrowRight />
-                </div>
-              </motion.div>
-
             </div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

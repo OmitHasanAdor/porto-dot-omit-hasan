@@ -29,16 +29,16 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-24 bg-black"
+      className="section-py"
     >
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center mb-16">
-          <p className="text-cyan-400 mb-3">
+          <p className="text-accent mb-3 text-sm tracking-wide">
             What I Offer
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2 className="text-4xl md:text-5xl font-display text-white">
             Services
           </h2>
         </div>
@@ -52,13 +52,13 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group bg-[#0d0d0d] border border-white/10 rounded-3xl p-8 hover:border-cyan-500/50 transition-all duration-300"
+              className="group liquid-glass rounded-3xl p-8 transition-all duration-300"
             >
-              <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-cyan-400 transition">
+              <h3 className="text-2xl font-display text-white mb-4 group-hover:text-accent transition">
                 {service.title}
               </h3>
 
-              <p className="text-gray-400 leading-7">
+              <p className="text-muted leading-7">
                 {service.desc}
               </p>
             </motion.div>

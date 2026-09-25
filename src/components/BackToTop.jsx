@@ -32,7 +32,7 @@ export default function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full bg-cyan-500 text-black shadow-lg hover:scale-110 transition"
+      className="fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full liquid-glass text-accent shadow-lg hover:scale-110 hover:text-white transition flex items-center justify-center"
     >
       <FaArrowUp className="mx-auto" />
     </button>

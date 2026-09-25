@@ -22,6 +22,7 @@ import {
   SiBetterauth,
   SiMongoose,
 } from "react-icons/si";
+
 const skillGroups = [
   {
     title: "Frontend",
@@ -29,12 +30,10 @@ const skillGroups = [
       { name: "React", icon: <FaReact /> },
       { name: "Next.js", icon: <SiNextdotjs /> },
       { name: "JavaScript", icon: <SiJavascript /> },
-     
       { name: "CSS3", icon: <SiCss /> },
       { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     ],
   },
-
   {
     title: "Backend",
     skills: [
@@ -45,7 +44,6 @@ const skillGroups = [
       { name: "Betterauth", icon: <SiBetterauth /> }
     ],
   },
-
   {
     title: "Tools & Workflow",
     skills: [
@@ -54,7 +52,6 @@ const skillGroups = [
       { name: "Vercel", icon: <SiVercel /> },
       { name: "Figma", icon: <PiFigmaLogoDuotone /> },
       { name: "AI Integration", icon: <FaBrain /> }
-     
     ],
   },
 ];
@@ -63,16 +60,16 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 bg-[#050505]"
+      className="section-py bg-[oklch(0.11_0.015_250)]"
     >
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center mb-16">
-          <p className="text-cyan-400 mb-3">
+          <p className="text-accent mb-3 text-sm tracking-wide">
             My Expertise
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2 className="text-4xl md:text-5xl font-display text-white">
             Skills & Technologies
           </h2>
         </div>
@@ -86,9 +83,9 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="bg-[#0d0d0d] border border-white/10 rounded-3xl p-8 hover:border-cyan-500/50 transition-all duration-300"
+              className="liquid-glass rounded-3xl p-8"
             >
-              <h3 className="text-2xl font-bold text-white mb-8">
+              <h3 className="text-2xl font-display text-white mb-8">
                 {group.title}
               </h3>
 
@@ -97,13 +94,13 @@ export default function Skills() {
                 {group.skills.map((skill, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-4 p-3 rounded-xl bg-black/40 hover:bg-cyan-500/10 transition"
+                    className="flex items-center gap-4 p-3 rounded-xl bg-[oklch(0.08_0.01_250)] hover:bg-white/5 transition"
                   >
-                    <span className="text-2xl text-cyan-400">
+                    <span className="text-2xl text-accent">
                       {skill.icon}
                     </span>
 
-                    <span className="text-gray-300">
+                    <span className="text-[var(--foreground)]">
                       {skill.name}
                     </span>
                   </div>
