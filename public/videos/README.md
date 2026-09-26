@@ -1,15 +1,19 @@
 # Hero video files go here
 
-The Lovable export only contained cloud-storage *references* to the hero
-video (JSON pointers to Lovable's private R2 bucket), not the actual media
-files, so they could not be carried over automatically.
+The hero currently falls back to the original source video, hosted on
+Lovable's CDN:
 
-Add your own files with these exact names and the hero will pick them up
-with no code changes:
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4
 
-- `hero.mp4`      (H.264 video, works everywhere — required)
-- `hero.webm`     (VP9/AV1 webm, smaller file size — optional but recommended)
-- `hero-poster.jpg` (a single frame, shown while the video loads / on very slow connections)
+That works fine for now, but it's tied to a third-party account you don't
+control, so it could disappear later. For a permanent, faster-loading setup,
+download that file once and drop it in here with these exact names — the
+`<video>` element already checks for them first, before falling back to the
+CDN link:
 
-Until these are added, the hero simply shows the dark gradient background,
-so the layout never breaks.
+- `hero.mp4`      (required for the self-hosted path)
+- `hero.webm`     (optional, smaller file size)
+- `hero-poster.jpg` (a single frame, shown while the video loads)
+
+No code changes needed either way — the hero always renders correctly,
+whichever source ends up being used.

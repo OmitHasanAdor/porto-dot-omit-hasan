@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 64" width="640" height="64">
+  <defs>
+    <linearGradient id="term-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2fd9d0" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#6fc6f0" stop-opacity=".55"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="638" height="62" rx="14" fill="#141b26" stroke="url(#term-border)" stroke-width="1.5"/>
+
+  <circle cx="24" cy="22" r="5" fill="#ff5f57" opacity=".9"/>
+  <circle cx="42" cy="22" r="5" fill="#ffbd2e" opacity=".9"/>
+  <circle cx="60" cy="22" r="5" fill="#28c840" opacity=".9">
+    <animate attributeName="opacity" values=".9;.4;.9" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="24" y="46" font-family="'SF Mono','Fira Code',Menlo,Consolas,monospace" font-size="17" fill="#6fc6f0">&gt;</text>
+
+  
+    <text x="86" y="40" font-family="'SF Mono','Fira Code',Menlo,Consolas,monospace" font-size="17" fill="#f7f8fa" opacity="0">
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3333;0.3583;1.0" dur="12.0s" repeatCount="indefinite" calcMode="linear"/>Frontend Developer<tspan fill="#6fc6f0"> |<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.42;0.5;0.92;1" begin="0.0s" dur="0.9s" repeatCount="4" /></tspan>
+    </text>
+    <text x="86" y="40" font-family="'SF Mono','Fira Code',Menlo,Consolas,monospace" font-size="17" fill="#f7f8fa" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3083;0.3333;0.6667;0.6917;1.0" dur="12.0s" repeatCount="indefinite" calcMode="linear"/>MERN Stack Developer<tspan fill="#6fc6f0"> |<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.42;0.5;0.92;1" begin="4.0s" dur="0.9s" repeatCount="4" /></tspan>
+    </text>
+    <text x="86" y="40" font-family="'SF Mono','Fira Code',Menlo,Consolas,monospace" font-size="17" fill="#f7f8fa" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6417;0.6667;1.0" dur="12.0s" repeatCount="indefinite" calcMode="linear"/>Next.js Developer<tspan fill="#6fc6f0"> |<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.42;0.5;0.92;1" begin="8.0s" dur="0.9s" repeatCount="4" /></tspan>
+    </text>
+</svg>

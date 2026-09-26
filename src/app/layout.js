@@ -54,6 +54,12 @@ export const metadata = {
   },
 
   metadataBase: new URL("https://porto-dot-omit-hasan.vercel.app"),
+
+  manifest: "/manifest.webmanifest",
+};
+
+export const viewport = {
+  themeColor: "#141b26",
 };
 
 export default function RootLayout({ children }) {
