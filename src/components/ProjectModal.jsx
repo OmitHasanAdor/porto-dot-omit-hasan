@@ -2,43 +2,30 @@
 
 import { FaTimes } from "react-icons/fa";
 
-export default function ProjectModal({
-  isOpen,
-  setIsOpen,
-  project,
-}) {
+export default function ProjectModal({ isOpen, setIsOpen, project }) {
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 z-9999 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-
-      <div className="bg-[#0d0d0d] border border-cyan-500/20 rounded-3xl max-w-2xl w-full p-8 relative">
-
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+      <div className="liquid-glass relative w-full max-w-2xl rounded-3xl border border-border bg-card p-8">
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute right-5 top-5 text-white text-xl"
+          className="absolute right-5 top-5 text-xl text-foreground"
+          aria-label="Close"
         >
           <FaTimes />
         </button>
 
-        <h2 className="text-3xl font-bold text-white mb-4">
-          {project.title}
-        </h2>
-
-        <p className="text-gray-400 mb-6">
-          {project.description}
-        </p>
+        <h2 className="mb-4 text-2xl font-semibold">{project.title}</h2>
+        <p className="mb-6 text-muted-foreground">{project.description}</p>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold text-white mb-3">
-            Technologies
-          </h3>
-
+          <h3 className="mb-3 text-lg font-semibold">Technologies</h3>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((item) => (
               <span
                 key={item}
-                className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm"
+                className="rounded-full border border-border px-3 py-1 text-sm text-muted-foreground"
               >
                 {item}
               </span>
@@ -47,16 +34,9 @@ export default function ProjectModal({
         </div>
 
         <div className="mb-8">
-          <h3 className="text-xl font-semibold text-white mb-3">
-            Features
-          </h3>
-
-          <ul className="list-disc ml-5 text-gray-300 space-y-2">
-            {project.features?.map((feature) => (
-              <li key={feature}>
-                {feature}
-              </li>
-            ))}
+          <h3 className="mb-3 text-lg font-semibold">Features</h3>
+          <ul className="ml-5 list-disc space-y-2 text-muted-foreground">
+            {project.features?.map((feature) => <li key={feature}>{feature}</li>)}
           </ul>
         </div>
 
@@ -65,21 +45,19 @@ export default function ProjectModal({
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-cyan-500 text-black px-5 py-2 rounded-full font-semibold"
+            className="rounded-full bg-primary px-5 py-2 font-medium text-primary-foreground"
           >
             Live Demo
           </a>
-
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-cyan-500 text-cyan-400 px-5 py-2 rounded-full"
+            className="rounded-full border border-border px-5 py-2 text-foreground"
           >
             GitHub
           </a>
         </div>
-
       </div>
     </div>
   );

@@ -1,6 +1,160 @@
 @import "tailwindcss";
-@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
-@import "@heroui/styles"; 
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Quicksand", Arial, sans-serif;
+  --radius: 0.75rem;
+
+  /* Light theme — eggshell editorial palette (default) */
+  --background: oklch(0.91 0.032 85);
+  --foreground: oklch(0.22 0.025 55);
+  --card: oklch(0.865 0.032 83);
+  --card-foreground: oklch(0.22 0.025 55);
+  --popover: oklch(0.94 0.026 85);
+  --popover-foreground: oklch(0.22 0.025 55);
+  --primary: oklch(0.22 0.025 55);
+  --primary-foreground: oklch(0.97 0.018 85);
+  --secondary: oklch(0.85 0.034 82);
+  --secondary-foreground: oklch(0.22 0.025 55);
+  --muted: oklch(0.85 0.034 82);
+  --muted-foreground: oklch(0.44 0.032 65);
+  --accent: oklch(0.85 0.034 82);
+  --accent-foreground: oklch(0.22 0.025 55);
+
+  --signal: oklch(0.52 0.12 220);
+  --signal-foreground: oklch(0.97 0.018 85);
+
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.22 0.025 55 / 15%);
+  --input: oklch(0.22 0.025 55 / 18%);
+  --ring: oklch(0.45 0.03 65);
+
+  --glass-fill: oklch(1 0 0 / 40%);
+  --glass-edge: oklch(1 0 0 / 70%);
+  --glass-edge-soft: oklch(0.22 0.025 55 / 12%);
+  --glass-shine: oklch(1 0 0 / 60%);
+}
+
+.dark {
+  /* Dark theme — deep navy editorial palette */
+  --background: oklch(0.2 0.03 250);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.24 0.025 250);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.19 0.01 250);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(1 0 0);
+  --primary-foreground: oklch(0.16 0 0);
+  --secondary: oklch(0.27 0.01 250);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.27 0.01 250);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.27 0.01 250);
+  --accent-foreground: oklch(1 0 0);
+
+  /* A single quiet signal color used sparingly for tags/links, tuned to the
+     same hue family as the background rather than a bright neon accent */
+  --signal: oklch(0.78 0.09 220);
+  --signal-foreground: oklch(0.16 0.03 250);
+
+  --destructive: oklch(0.61 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.8 0 0);
+
+  --glass-fill: oklch(1 0 0 / 1%);
+  --glass-edge: oklch(1 0 0 / 45%);
+  --glass-edge-soft: oklch(1 0 0 / 15%);
+  --glass-shine: oklch(1 0 0 / 10%);
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+.liquid-glass {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--glass-fill);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 1px var(--glass-shine);
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    var(--glass-edge) 0%,
+    var(--glass-edge-soft) 20%,
+    transparent 40%,
+    transparent 60%,
+    var(--glass-edge-soft) 80%,
+    var(--glass-edge) 100%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-fade-rise, .animate-fade-rise-delay, .animate-fade-rise-delay-2 { animation: none; }
 }

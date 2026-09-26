@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-
+import { Home, User, Sparkles, Briefcase, FolderKanban, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { MenuToggle } from "@/components/ui/menu-toggle";
+import BottomNavBar from "@/components/ui/bottom-nav-bar";
+import LogoMark from "@/components/LogoMark";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -16,9 +19,19 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+const bottomNavItems = [
+  { label: "Home", href: "#home", icon: Home },
+  { label: "About", href: "#about", icon: User },
+  { label: "Skills", href: "#skills", icon: Sparkles },
+  { label: "Services", href: "#services", icon: Briefcase },
+  { label: "Projects", href: "#projects", icon: FolderKanban },
+  { label: "Contact", href: "#contact", icon: Mail },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -31,120 +44,133 @@ export default function Navbar() {
           }
         });
       },
-      {
-        threshold: 0.4,
-      }
+      { threshold: 0.4 },
     );
 
     sections.forEach((section) => observer.observe(section));
 
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
-      sections.forEach((section) =>
-        observer.unobserve(section)
-      );
+      sections.forEach((section) => observer.unobserve(section));
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  const bottomActiveIndex = Math.max(
+    0,
+    bottomNavItems.findIndex((item) => item.href.replace("#", "") === activeSection),
+  );
+
+  const scrollToHref = (href) => {
+    const el = document.querySelector(href);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl"
-    >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-
-        {/* Logo */}
-        <Link href="/">
-          <div>
-            <h2 className="text-2xl font-bold text-white">
-              O<span className="text-cyan-400">A</span>
-            </h2>
-            <p className="text-[10px] text-gray-400">
-              Developer
-            </p>
-          </div>
-        </Link>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`transition px-3 py-2 rounded-lg ${activeSection === item.href.replace("#", "")
-                ? "text-cyan-400 bg-cyan-500/10"
-                : "text-gray-300 hover:text-cyan-400"
-                }`}
+    <>
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-0 z-50 w-full backdrop-blur-xl transition-colors duration-300 ${
+          scrolled
+            ? "border-b border-border bg-background/80"
+            : "border-b border-white/10 bg-black/20"
+        }`}
+      >
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          <Link href="/" className="flex items-center gap-3">
+            <LogoMark size={38} />
+            <span
+              className={`font-display hidden text-2xl leading-none sm:inline ${
+                scrolled ? "text-foreground" : "text-white"
+              }`}
             >
-              {item.label}
-            </a>
-          ))}
-        </div>
+              Omit<span className={scrolled ? "text-muted-foreground" : "text-white/70"}> Hasan Ador</span>
+            </span>
+          </Link>
 
-        {/* Desktop Resume Button */}
-        <div className="hidden md:block">
-         <motion.a
-  href="/resume.pdf"
-  download
-  animate={{
-    scale: [1, 1.06, 1],
-    boxShadow: [
-      "0 0 0px rgba(34,211,238,0)",
-      "0 0 25px rgba(34,211,238,.9)",
-      "0 0 0px rgba(34,211,238,0)",
-    ],
-  }}
-  transition={{
-    duration: 1.8,
-    repeat: Infinity,
-    repeatDelay: 3,
-  }}
-  className="inline-flex items-center px-5 py-2.5 rounded-xl bg-cyan-500 text-black font-semibold"
->
-  Resume
-</motion.a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-white text-2xl"
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
-          <div className="flex flex-col p-6 gap-5">
-            {navLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`transition ${activeSection === item.href.replace("#", "")
-                  ? "text-cyan-400"
-                  : "text-gray-300 hover:text-cyan-400"
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.href.replace("#", "");
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`rounded-full px-4 py-2 text-sm transition ${
+                    scrolled
+                      ? isActive
+                        ? "bg-accent text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                      : isActive
+                        ? "bg-white/15 text-white"
+                        : "text-white/75 hover:text-white"
                   }`}
-              >
-                {item.label}
-              </a>
-            ))}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
 
-            <a
-              href="/resume.pdf"
-              download
-              className="bg-cyan-500 text-black text-center py-3 rounded-xl font-semibold"
-            >
-              Download Resume
-            </a>
+          <div className="hidden items-center gap-3 md:flex">
+            <ThemeToggle />
+            <Button as="a" href="/resume.pdf" download variant="glass" size="sm">
+              Resume
+            </Button>
+          </div>
+
+          <div className="flex items-center gap-4 md:hidden">
+            <ThemeToggle />
+            <MenuToggle
+              open={isOpen}
+              onOpenChange={setIsOpen}
+              strokeWidth={3}
+              className={`size-6 ${scrolled ? "text-foreground" : "text-white"}`}
+            />
           </div>
         </div>
-      )}
-    </motion.nav>
+
+        {isOpen && (
+          <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
+            <div className="flex flex-col gap-4 p-6">
+              {navLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`transition ${
+                    activeSection === item.href.replace("#", "")
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+
+              <a
+                href="/resume.pdf"
+                download
+                className="liquid-glass rounded-full py-3 text-center font-medium text-foreground"
+              >
+                Download Resume
+              </a>
+            </div>
+          </div>
+        )}
+      </motion.nav>
+
+      {/* Mobile-only fixed bottom tab bar */}
+      <div className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 md:hidden">
+        <BottomNavBar
+          items={bottomNavItems}
+          activeIndex={bottomActiveIndex}
+          onSelect={(_, item) => scrollToHref(item.href)}
+        />
+      </div>
+    </>
   );
 }

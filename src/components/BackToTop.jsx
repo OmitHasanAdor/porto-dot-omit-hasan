@@ -7,24 +7,13 @@ export default function BackToTop() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShow(window.scrollY > 500);
-    };
-
+    const handleScroll = () => setShow(window.scrollY > 500);
     window.addEventListener("scroll", handleScroll);
-
-    return () =>
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (!show) return null;
@@ -32,7 +21,8 @@ export default function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full bg-cyan-500 text-black shadow-lg hover:scale-110 transition"
+      aria-label="Back to top"
+      className="liquid-glass fixed bottom-24 right-4 z-50 h-12 w-12 rounded-full text-foreground shadow-lg transition hover:scale-110 sm:bottom-6 sm:right-6"
     >
       <FaArrowUp className="mx-auto" />
     </button>
