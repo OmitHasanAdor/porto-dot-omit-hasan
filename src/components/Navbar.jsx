@@ -74,32 +74,45 @@ export default function Navbar() {
         initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-          scrolled ? "border-b border-border bg-background/70 backdrop-blur-xl" : "bg-transparent"
+        className={`fixed top-0 z-50 w-full backdrop-blur-xl transition-colors duration-300 ${
+          scrolled
+            ? "border-b border-border bg-background/80"
+            : "border-b border-white/10 bg-black/20"
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3">
             <LogoMark size={38} />
-            <span className="font-display hidden text-2xl leading-none text-foreground sm:inline">
-              Omit<span className="text-muted-foreground"> Hasan Ador</span>
+            <span
+              className={`font-display hidden text-2xl leading-none sm:inline ${
+                scrolled ? "text-foreground" : "text-white"
+              }`}
+            >
+              Omit<span className={scrolled ? "text-muted-foreground" : "text-white/70"}> Hasan Ador</span>
             </span>
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`rounded-full px-4 py-2 text-sm transition ${
-                  activeSection === item.href.replace("#", "")
-                    ? "bg-accent text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.href.replace("#", "");
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`rounded-full px-4 py-2 text-sm transition ${
+                    scrolled
+                      ? isActive
+                        ? "bg-accent text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                      : isActive
+                        ? "bg-white/15 text-white"
+                        : "text-white/75 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -115,7 +128,7 @@ export default function Navbar() {
               open={isOpen}
               onOpenChange={setIsOpen}
               strokeWidth={3}
-              className="size-6 text-foreground"
+              className={`size-6 ${scrolled ? "text-foreground" : "text-white"}`}
             />
           </div>
         </div>
