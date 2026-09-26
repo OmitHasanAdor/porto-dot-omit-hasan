@@ -22,7 +22,7 @@ export default function BackToTop() {
     <button
       onClick={scrollToTop}
       aria-label="Back to top"
-      className="liquid-glass fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full text-foreground shadow-lg transition hover:scale-110"
+      className="liquid-glass fixed bottom-24 right-4 z-50 h-12 w-12 rounded-full text-foreground shadow-lg transition hover:scale-110 sm:bottom-6 sm:right-6"
     >
       <FaArrowUp className="mx-auto" />
     </button>

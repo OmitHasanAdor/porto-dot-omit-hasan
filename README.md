@@ -88,14 +88,34 @@ neon-glow "AI portfolio" template look.
 ## Features
 
 - 🎬 Full-bleed video hero with a graceful gradient fallback
+- 🎞️ Editorial filmstrip carousel for Projects, with a live re-graded backdrop
+- 🧱 Bento-grid Services section with staggered scroll reveals
+- 📊 Animated proficiency bars in Skills & Technologies
+- 🌗 Light (eggshell) / dark (navy) theme, toggled from the navbar
+- 📱 Mobile-first: a fixed glass pill tab bar on mobile, top nav on desktop
+- ⏳ A percentage-counter loading screen on first visit
 - 🪟 "Liquid glass" buttons and cards throughout
-- 🧭 Scroll-spy navigation with a glass/blur nav bar
-- 📊 Animated stat counters on scroll
 - 🗂️ Project modal with tech stack + feature breakdown
 - ❓ Accordion FAQ section
 - 📬 Working contact form wired to a live API endpoint
-- 🌓 Fully responsive, from mobile to ultra-wide
 - ⚡ Zero-config Vercel deploy
+
+<div align="center">
+<img src="public/wave-divider.svg" width="100%" height="6" alt="" />
+</div>
+
+## Theming
+
+Light and dark themes are handled by `next-themes` (`src/components/theme-provider.jsx`),
+toggled with the sun/moon switch in the navbar (`src/components/ThemeToggle.jsx`).
+Both palettes live as CSS custom properties in `src/app/globals.css`:
+
+- `:root` — light theme, eggshell background
+- `.dark` — dark theme, deep navy background (the default)
+
+Add or adjust colors by editing those two blocks; every component reads
+from the same `--background`, `--card`, `--foreground`, etc. tokens, so
+nothing needs to change component-side.
 
 <div align="center">
 <img src="public/wave-divider.svg" width="100%" height="6" alt="" />
@@ -152,17 +172,25 @@ and avoids an external request on every page load.
 ```
 src/
 ├─ app/
-│  ├─ layout.js        # fonts, metadata, analytics
+│  ├─ layout.js        # fonts, theme provider, preloader, metadata
 │  ├─ page.js           # section order
-│  ├─ globals.css       # design tokens, glass utility, animations
+│  ├─ globals.css       # light/dark tokens, glass utility, animations
 │  ├─ icon.svg           # animated favicon (modern browsers)
 │  └─ favicon.ico        # static favicon (universal fallback)
 ├─ components/
-│  ├─ Navbar.jsx, Hero.jsx, About.jsx, Skills.jsx
-│  ├─ Services.jsx, Projects.jsx, ProjectModal.jsx
-│  ├─ FAQ.jsx, Contact.jsx, Footer.jsx
+│  ├─ Navbar.jsx         # top bar (desktop) + fixed tab bar (mobile)
+│  ├─ Hero.jsx, About.jsx, Skills.jsx, Services.jsx
+│  ├─ Projects.jsx, ProjectModal.jsx, FAQ.jsx, Contact.jsx, Footer.jsx
+│  ├─ Preloader.jsx      # first-visit loading screen
+│  ├─ ThemeToggle.jsx    # light/dark switch
+│  ├─ theme-provider.jsx # next-themes wrapper
 │  ├─ LogoMark.jsx       # animated "OA" monogram
-│  └─ ui/button.jsx      # shared button incl. the glass variant
+│  └─ ui/
+│     ├─ button.jsx           # shared button incl. the glass variant
+│     ├─ menu-toggle.jsx      # animated hamburger ↔ close icon
+│     ├─ bottom-nav-bar.jsx   # mobile fixed tab bar
+│     ├─ hero-carousel.jsx    # Projects filmstrip carousel
+│     └─ timeline-animation.jsx # scroll-triggered stagger reveal
 └─ data/
    ├─ projects.js, faqs.js, contact.js
 ```

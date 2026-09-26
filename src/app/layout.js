@@ -1,16 +1,19 @@
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Playfair_Display, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/theme-provider";
+import Preloader from "@/components/Preloader";
 
-const instrumentSerif = Instrument_Serif({
+const playfairDisplay = Playfair_Display({
   variable: "--font-display",
-  weight: "400",
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
 
-const inter = Inter({
+const quicksand = Quicksand({
   variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -66,10 +69,14 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfairDisplay.variable} ${quicksand.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <Preloader />
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

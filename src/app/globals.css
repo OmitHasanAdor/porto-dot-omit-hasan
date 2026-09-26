@@ -32,11 +32,43 @@
 }
 
 :root {
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "Inter", Arial, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Quicksand", Arial, sans-serif;
   --radius: 0.75rem;
 
-  /* Deep navy editorial palette, carried over from the brand system */
+  /* Light theme — eggshell editorial palette (default) */
+  --background: oklch(0.96 0.015 85);
+  --foreground: oklch(0.22 0.02 60);
+  --card: oklch(0.935 0.016 82);
+  --card-foreground: oklch(0.22 0.02 60);
+  --popover: oklch(0.98 0.012 85);
+  --popover-foreground: oklch(0.22 0.02 60);
+  --primary: oklch(0.22 0.02 60);
+  --primary-foreground: oklch(0.98 0.012 85);
+  --secondary: oklch(0.91 0.018 80);
+  --secondary-foreground: oklch(0.22 0.02 60);
+  --muted: oklch(0.91 0.018 80);
+  --muted-foreground: oklch(0.46 0.02 70);
+  --accent: oklch(0.91 0.018 80);
+  --accent-foreground: oklch(0.22 0.02 60);
+
+  --signal: oklch(0.56 0.11 220);
+  --signal-foreground: oklch(0.98 0.012 85);
+
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.22 0.02 60 / 12%);
+  --input: oklch(0.22 0.02 60 / 14%);
+  --ring: oklch(0.5 0.02 70);
+
+  --glass-fill: oklch(1 0 0 / 35%);
+  --glass-edge: oklch(1 0 0 / 65%);
+  --glass-edge-soft: oklch(0.22 0.02 60 / 10%);
+  --glass-shine: oklch(1 0 0 / 55%);
+}
+
+.dark {
+  /* Dark theme — deep navy editorial palette */
   --background: oklch(0.2 0.03 250);
   --foreground: oklch(1 0 0);
   --card: oklch(0.24 0.025 250);
@@ -81,6 +113,7 @@ html {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
