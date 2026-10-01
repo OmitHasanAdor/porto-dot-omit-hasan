@@ -6,14 +6,11 @@ export const projects = [
     description:
       "A full-stack online marketplace platform built for buyers and sellers, featuring product management, dashboards, order management, authentication, and online payments.",
 
-    live:
-      "https://easy-buy-ruddy.vercel.app",
+    live: "https://easy-buy-ruddy.vercel.app",
 
-    github:
-      "https://github.com/OmitHasanAdor/EasyBuy",
+    github: "https://github.com/OmitHasanAdor/EasyBuy",
 
-    server:
-      "https://github.com/OmitHasanAdor/easybuy-server",
+    server: "https://github.com/OmitHasanAdor/easybuy-server",
 
     tech: [
       "Next.js",
@@ -51,6 +48,89 @@ export const projects = [
   },
 
   {
+    title: "MediCare Connect",
+    image: "/medicare.png",
+
+    description:
+      "A full-stack healthcare platform designed to connect patients and doctors through appointment booking, authentication, dashboards, and secure online payments.",
+
+    live: "https://ass10-medicare-client-side.vercel.app",
+
+    github:
+      "https://github.com/OmitHasanAdor/ass10-medicare-client-side",
+
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Better Auth",
+      "MongoDB",
+      "Express.js",
+      "Stripe",
+    ],
+
+    category: "Full Stack",
+
+    featured: true,
+
+    role: "Frontend-focused Full-Stack Developer",
+
+    features: [
+      "Patient and doctor workflows",
+      "Doctor discovery",
+      "Appointment booking",
+      "Patient dashboard",
+      "Doctor dashboard",
+      "Admin dashboard",
+      "Google authentication",
+      "Email and password authentication",
+      "Stripe payment integration",
+      "Responsive healthcare interface",
+    ],
+  },
+
+  {
+    title: "MediQueue",
+    image: "/mediqueue.png",
+
+    description:
+      "A healthcare tutor booking platform that allows users to discover tutors, book sessions, and manage their appointments through a modern full-stack application.",
+
+    live: "https://ass8-mediqueue-tutor-booking-system.vercel.app",
+
+    github:
+      "https://github.com/OmitHasanAdor/ass8-mediqueue-totor-booking-system",
+
+    tech: [
+      "Next.js",
+      "React",
+      "Express.js",
+      "MongoDB",
+      "Better Auth",
+      "Tailwind CSS",
+      "HeroUI",
+    ],
+
+    category: "Full Stack",
+
+    featured: true,
+
+    role: "Frontend-focused Full-Stack Developer",
+
+    features: [
+      "Tutor discovery",
+      "Tutor search and filtering",
+      "Booking management",
+      "User authentication",
+      "Better Auth integration",
+      "Dynamic routing",
+      "Responsive UI",
+      "Modern dashboard interface",
+    ],
+  },
+
+  {
     title: "WanderLast",
     image: "/wanderlast.png",
 
@@ -74,7 +154,7 @@ export const projects = [
 
     category: "Full Stack",
 
-    featured: true,
+    featured: false,
 
     role: "Frontend-focused Full-Stack Developer",
 
@@ -85,47 +165,6 @@ export const projects = [
       "User authentication",
       "Dynamic routing",
       "Responsive UI",
-    ],
-  },
-
-  {
-    title: "MediQueue",
-    image: "/mediqueue.png",
-
-    description:
-      "A full-stack healthcare booking platform that helps users discover doctors, book appointments, and manage their healthcare interactions.",
-
-    live:
-      "https://ass10-medical-client-side.vercel.app",
-
-    github:
-      "https://github.com/OmitHasanAdor/ass10-medicare-client-side",
-
-    tech: [
-      "Next.js",
-      "React",
-      "Express.js",
-      "MongoDB",
-      "Better Auth",
-      "Tailwind CSS",
-      "Stripe",
-    ],
-
-    category: "Full Stack",
-
-    featured: true,
-
-    role: "Frontend-focused Full-Stack Developer",
-
-    features: [
-      "Doctor discovery",
-      "Appointment booking",
-      "Patient dashboard",
-      "Doctor dashboard",
-      "Admin dashboard",
-      "Authentication",
-      "Stripe payment integration",
-      "Responsive healthcare UI",
     ],
   },
 
