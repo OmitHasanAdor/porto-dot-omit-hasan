@@ -1,10 +1,61 @@
 export const projects = [
   {
+    title: "EasyBuy",
+    image: "/easybuy.png",
+
+    description:
+      "A full-stack online marketplace platform built for buyers and sellers, featuring product management, dashboards, order management, authentication, and online payments.",
+
+    live:
+      "https://easy-buy-ruddy.vercel.app",
+
+    github:
+      "https://github.com/OmitHasanAdor/EasyBuy",
+
+    server:
+      "https://github.com/OmitHasanAdor/easybuy-server",
+
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Better Auth",
+      "PostgreSQL",
+      "Prisma",
+      "Neon",
+      "Express.js",
+      "SSLCommerz",
+    ],
+
+    category: "Full Stack",
+
+    featured: true,
+
+    role: "Frontend-focused Full-Stack Developer",
+
+    features: [
+      "Buyer and seller marketplace workflow",
+      "Product browsing, search and filtering",
+      "Seller product management",
+      "Buyer order management",
+      "Seller dashboard",
+      "Buyer dashboard",
+      "Admin dashboard",
+      "Authentication with Better Auth",
+      "PostgreSQL database with Prisma ORM",
+      "Online payment with SSLCommerz",
+      "Cash on Delivery",
+      "Responsive and modern UI",
+    ],
+  },
+
+  {
     title: "WanderLast",
     image: "/wanderlast.png",
 
     description:
-      "A modern travel and booking platform.",
+      "A modern travel discovery and booking platform for exploring destinations, searching experiences, and managing bookings.",
 
     live:
       "https://module52-wanderlast-booking-project.vercel.app",
@@ -14,16 +65,67 @@ export const projects = [
 
     tech: [
       "Next.js",
+      "React",
+      "Express.js",
       "MongoDB",
       "Better Auth",
-      "Tailwind",
+      "Tailwind CSS",
     ],
 
+    category: "Full Stack",
+
+    featured: true,
+
+    role: "Frontend-focused Full-Stack Developer",
+
     features: [
-      "User authentication",
-      "Responsive UI",
+      "Destination discovery",
+      "Search and filtering",
       "Booking management",
+      "User authentication",
       "Dynamic routing",
+      "Responsive UI",
+    ],
+  },
+
+  {
+    title: "MediQueue",
+    image: "/mediqueue.png",
+
+    description:
+      "A full-stack healthcare booking platform that helps users discover doctors, book appointments, and manage their healthcare interactions.",
+
+    live:
+      "https://ass10-medical-client-side.vercel.app",
+
+    github:
+      "https://github.com/OmitHasanAdor/ass10-medicare-client-side",
+
+    tech: [
+      "Next.js",
+      "React",
+      "Express.js",
+      "MongoDB",
+      "Better Auth",
+      "Tailwind CSS",
+      "Stripe",
+    ],
+
+    category: "Full Stack",
+
+    featured: true,
+
+    role: "Frontend-focused Full-Stack Developer",
+
+    features: [
+      "Doctor discovery",
+      "Appointment booking",
+      "Patient dashboard",
+      "Doctor dashboard",
+      "Admin dashboard",
+      "Authentication",
+      "Stripe payment integration",
+      "Responsive healthcare UI",
     ],
   },
 
@@ -32,7 +134,7 @@ export const projects = [
     image: "/suncart.png",
 
     description:
-      "Authentication-focused e-commerce platform.",
+      "A modern e-commerce platform focused on secure authentication, product discovery, and a smooth shopping experience.",
 
     live:
       "https://assignment8-auth-nextjs-project.vercel.app",
@@ -43,43 +145,23 @@ export const projects = [
     tech: [
       "Next.js",
       "TypeScript",
-      "Tailwind",
+      "React",
+      "Tailwind CSS",
       "Better Auth",
     ],
+
+    category: "Full Stack",
+
+    featured: false,
+
+    role: "Frontend-focused Full-Stack Developer",
 
     features: [
       "Secure authentication",
       "Protected routes",
+      "Product browsing",
       "Responsive design",
       "Modern UI",
-    ],
-  },
-
-  {
-    title: "MediQueue",
-    image: "/mediqueue.png",
-
-    description:
-      "Tutor booking system with authentication.",
-
-    live:
-      "https://ass8-mediqueue-totor-booking-system.vercel.app",
-
-    github:
-      "https://github.com/OmitHasanAdor/ass8-mediqueue-totor-booking-system",
-
-    tech: [
-      "Next.js",
-      "Tailwind",
-      "MongoDB",
-      "Better Auth",
-    ],
-
-    features: [
-      "Tutor booking",
-      "Authentication",
-      "Responsive design",
-      "Session management",
     ],
   },
 ];
