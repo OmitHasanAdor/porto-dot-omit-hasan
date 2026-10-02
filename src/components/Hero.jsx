@@ -39,7 +39,7 @@ export default function Hero() {
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/55 via-black/45 to-black/65" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-6 pb-20 pt-32 text-center sm:pt-40">
         <motion.div
@@ -70,7 +70,7 @@ export default function Hero() {
             sequence={[
               "Frontend Developer",
               2000,
-              "MERN Stack Developer",
+              "Full Stack Developer",
               2000,
               "Next.js Developer",
               2000,
@@ -87,8 +87,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg"
         >
-          I am a Frontend-focused MERN Stack Developer from Bangladesh, specializing in modern,
-          responsive and high-performance web applications.
+          I am a Frontend-Focused Full Stack Developer from Bangladesh, specializing in modern,
+          responsive and high-performance web applications with React, Next.js and clean backend integration.
         </motion.p>
 
         <motion.div
@@ -97,10 +97,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <Button as="a" href="#projects" variant="glass" size="lg" className="!text-white">
+          <Button as="a" href="#projects" variant="glass" size="lg" className="text-white!">
             View Projects
           </Button>
-          <Button as="a" href="/resume.pdf" download variant="outline" size="lg" className="border-white/30 !text-white hover:!bg-white/10">
+          <Button as="a" href="/resume.pdf" download variant="outline" size="lg" className="border-white/30 text-white! hover:bg-white/10!">
             Download Resume
           </Button>
         </motion.div>

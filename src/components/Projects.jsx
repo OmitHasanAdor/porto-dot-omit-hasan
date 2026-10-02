@@ -89,8 +89,8 @@ export default function Projects() {
                   <div
                     className={`relative overflow-hidden ${
                       isFirst
-                        ? "aspect-[16/7]"
-                        : "aspect-[16/10]"
+                        ? "aspect-16/7"
+                        : "aspect-16/10"
                     }`}
                   >
                     <Image
@@ -102,7 +102,7 @@ export default function Projects() {
                     />
 
                     {/* Image Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
                     {/* Number */}
                     <div className="absolute left-5 top-5">

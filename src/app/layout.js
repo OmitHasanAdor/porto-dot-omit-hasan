@@ -18,24 +18,31 @@ const quicksand = Quicksand({
 });
 
 export const metadata = {
-  title: "Omit Hasan Ador | MERN Stack Developer",
+  title: "Omit Hasan Ador | Frontend-Focused Full Stack Developer",
 
   description:
-    "Frontend-focused MERN Stack Developer from Bangladesh specializing in React, Next.js and modern web applications.",
+    "Frontend-focused Full Stack Developer from Bangladesh specializing in React, Next.js, TypeScript and modern web applications.",
 
   keywords: [
-    "MERN Developer",
+    "Full Stack Developer",
+    "Frontend Developer",
     "React Developer",
     "Next.js Developer",
-    "Frontend Developer",
+    "TypeScript Developer",
+    "MERN Stack Developer",
+    "JavaScript Developer",
     "Bangladesh Developer",
+    "Web Developer",
+    "Portfolio",
+    "Omit Hasan Ador",
   ],
 
   authors: [{ name: "Omit Hasan Ador" }],
 
   openGraph: {
-    title: "Omit Hasan Ador",
-    description: "Frontend-focused MERN Stack Developer",
+    title: "Omit Hasan Ador | Frontend-Focused Full Stack Developer",
+    description:
+      "Frontend-focused Full Stack Developer from Bangladesh specializing in React, Next.js, TypeScript and modern web applications.",
     url: "https://porto-dot-omit-hasan.vercel.app",
     siteName: "Omit Hasan Ador",
     type: "website",
@@ -51,8 +58,9 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Omit Hasan Ador",
-    description: "Frontend-focused MERN Stack Developer",
+    title: "Omit Hasan Ador | Frontend-Focused Full Stack Developer",
+    description:
+      "Frontend-focused Full Stack Developer from Bangladesh specializing in React, Next.js, TypeScript and modern web applications.",
     images: ["/og-image.png"],
   },
 

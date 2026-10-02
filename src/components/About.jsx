@@ -31,7 +31,7 @@ function Counter({ value, suffix }) {
 
 const stats = [
   { targetNumber: 10, suffix: "+", title: "Real Projects" },
-  { targetNumber: 10, suffix: "+", title: "Technologies" },
+  { targetNumber: 15, suffix: "+", title: "Technologies" },
   { targetNumber: 100, suffix: "%", title: "Responsive Design" },
 ];
 
@@ -62,19 +62,19 @@ export default function About() {
 
           <div>
             <h3 className="mb-6 text-2xl font-semibold sm:text-3xl">
-              Frontend-Focused MERN Stack Developer
+              Frontend-Focused Full Stack Developer
             </h3>
 
             <p className="text-lg leading-8 text-muted-foreground">
-              I am a passionate MERN Stack Developer from Bangladesh who enjoys building modern,
-              responsive and user-friendly web applications. My focus is creating fast, scalable
-              and visually appealing digital experiences using React, Next.js, MongoDB and modern
-              frontend technologies.
+              I am a passionate Frontend-Focused Full Stack Developer from Bangladesh who enjoys building modern,
+              responsive and user-friendly web applications. My strongest focus is creating fast, scalable
+              and visually appealing digital experiences using React, Next.js, TypeScript, Tailwind CSS,
+              while also working with Node.js, Express, Prisma, PostgreSQL and MongoDB.
             </p>
 
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              I am currently expanding my backend development skills while building real-world
-              projects and preparing for freelance and remote opportunities.
+              I love turning ideas into clean, production-ready products and am actively looking for
+              freelance and remote opportunities where I can contribute both strong frontend skills and solid full-stack solutions.
             </p>
           </div>
 
