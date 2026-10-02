@@ -15,43 +15,51 @@ const services = [
     icon: LayoutTemplate,
     title: "Landing Pages",
     desc: "High-converting modern landing pages for businesses and startups.",
-    size: "lg",
+    position:
+      "lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-3",
     tone: "signal",
   },
   {
     icon: Building2,
     title: "Business Websites",
     desc: "Professional websites for companies and local businesses.",
-    size: "sm",
+    position:
+      "lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2",
     tone: "solid",
   },
   {
     icon: ShoppingCart,
     title: "E-Commerce Websites",
     desc: "Responsive and scalable online stores with modern UI.",
-    size: "md",
+    position:
+      "lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-4",
     tone: "card",
   },
   {
     icon: UserRound,
     title: "Portfolio Websites",
     desc: "Personal branding websites for developers and professionals.",
-    size: "md",
+    position:
+      "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
     tone: "card",
   },
   {
     icon: Rocket,
     title: "Next.js Development",
     desc: "Fast and SEO-friendly web applications built with Next.js.",
-    size: "sm",
+    position:
+      "lg:col-start-2 lg:col-end-3 lg:row-start-3 lg:row-end-4",
     tone: "solid",
   },
 ];
 
 const toneClasses = {
-  signal: "bg-signal/15 text-foreground border-signal/30",
-  solid: "bg-primary text-primary-foreground border-transparent",
-  card: "bg-card text-foreground border-border",
+  signal:
+    "bg-signal/15 text-foreground border-signal/30",
+  solid:
+    "bg-primary text-primary-foreground border-transparent",
+  card:
+    "bg-card text-foreground border-border",
 };
 
 const revealVariants = {
@@ -59,36 +67,55 @@ const revealVariants = {
     y: 0,
     opacity: 1,
     filter: "blur(0px)",
-    transition: { delay: i * 0.12, duration: 0.5 },
+    transition: {
+      delay: i * 0.12,
+      duration: 0.5,
+    },
   }),
-  hidden: { filter: "blur(10px)", y: -16, opacity: 0 },
+
+  hidden: {
+    filter: "blur(10px)",
+    y: -16,
+    opacity: 0,
+  },
 };
 
 export default function Services() {
   const sectionRef = useRef(null);
 
   return (
-    <section id="services" ref={sectionRef} className="bg-background py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      id="services"
+      ref={sectionRef}
+      className="bg-background py-24 md:py-32"
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
+        {/* Heading */}
         <TimelineContent
           as="div"
           animationNum={0}
           customVariants={revealVariants}
           timelineRef={sectionRef}
-          className="mb-16 max-w-2xl"
+          className="mb-12 max-w-2xl md:mb-16"
         >
-          <h2 className="font-display text-4xl sm:text-5xl">Services</h2>
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-signal">
+            What I Do
+          </p>
+
+          <h2 className="font-display text-4xl tracking-tight sm:text-5xl md:text-6xl">
+            Services
+          </h2>
+
+          <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground md:text-base">
+            Modern web solutions designed around performance, usability,
+            responsive design, and real-world business needs.
+          </p>
         </TimelineContent>
 
-        <div className="grid auto-rows-[180px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Desktop Bento Grid */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:auto-rows-[150px] lg:grid-cols-3">
           {services.map((service, i) => {
             const Icon = service.icon;
-            const span =
-              service.size === "lg"
-                ? "sm:col-span-2 lg:col-span-2 row-span-2"
-                : service.size === "md"
-                  ? "row-span-2"
-                  : "row-span-1";
 
             return (
               <TimelineContent
@@ -97,16 +124,28 @@ export default function Services() {
                 animationNum={i + 1}
                 customVariants={revealVariants}
                 timelineRef={sectionRef}
-                className={`flex flex-col justify-between rounded-3xl border p-6 transition hover:-translate-y-1 ${toneClasses[service.tone]} ${span}`}
+                className={`group flex h-full min-h-0 flex-col justify-between overflow-hidden rounded-3xl border p-5 transition-all duration-300 hover:-translate-y-1 md:p-6 ${toneClasses[service.tone]} ${service.position}`}
               >
-                <Icon size={26} className="opacity-90" />
+                {/* Icon */}
                 <div>
-                  <h3 className="mb-1 text-lg font-semibold">{service.title}</h3>
+                  <Icon
+                    size={25}
+                    strokeWidth={1.8}
+                    className="opacity-90 transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className="mb-1.5 text-lg font-semibold tracking-tight">
+                    {service.title}
+                  </h3>
+
                   <p
                     className={
                       service.tone === "solid"
-                        ? "text-sm text-primary-foreground/80"
-                        : "text-sm text-muted-foreground"
+                        ? "max-w-sm text-sm leading-5 text-primary-foreground/75"
+                        : "max-w-sm text-sm leading-5 text-muted-foreground"
                     }
                   >
                     {service.desc}
