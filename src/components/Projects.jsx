@@ -1,309 +1,237 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
 import {
-  FaArrowRight,
-  FaGithub,
-  FaExternalLinkAlt,
-} from "react-icons/fa";
+  ArrowUpRight,
+  ExternalLink,
+  Github,
+  Eye,
+} from "lucide-react";
+
 import { projects } from "@/data/projects";
+import ProjectModal from "./ProjectModal";
+
+const slugify = (title) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 export default function Projects() {
-  const featuredProject = projects.find(
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const featuredProjects = projects.filter(
     (project) => project.featured
   );
 
-  const otherProjects = projects.filter(
-    (project) => !project.featured
-  );
+  const openProjectModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeProjectModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
-    <section
-      id="projects"
-      className="relative overflow-hidden bg-[#050505] py-24 md:py-32"
-    >
-      {/* Background Glow */}
-      <div className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
+    <>
+      <section
+        id="projects"
+        className="relative overflow-hidden bg-background py-24 md:py-32"
+      >
+        {/* Background Glow */}
+        <div className="pointer-events-none absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-signal/10 blur-[120px]" />
 
-      <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
+        <div className="container relative mx-auto px-6 md:px-8">
+          {/* Section Header */}
+          <div className="mb-14 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-signal">
+                Selected Work
+              </p>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
-        >
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
-            My Work
-          </p>
-
-          <h2 className="text-3xl font-bold text-white md:text-5xl">
-            Featured{" "}
-            <span className="text-cyan-400">Projects</span>
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base text-gray-400 md:text-lg">
-            A selection of projects I&apos;ve built using modern
-            frontend and full-stack technologies.
-          </p>
-        </motion.div>
-
-        {/* Featured Project */}
-        {featuredProject && (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-12"
-          >
-            <div className="group relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-[#0a0a0a] shadow-2xl">
-              {/* Featured Badge */}
-              <div className="absolute left-5 top-5 z-20">
-                <span className="rounded-full bg-cyan-500 px-4 py-2 text-xs font-bold uppercase tracking-wider text-black shadow-lg shadow-cyan-500/20">
-                  Featured Project
+              <h2 className="font-serif text-4xl leading-tight text-foreground md:text-6xl">
+                Projects that solve
+                <br />
+                <span className="text-muted-foreground">
+                  real-world problems.
                 </span>
-              </div>
+              </h2>
+            </div>
 
-              <div className="grid lg:grid-cols-2">
-                {/* Image */}
-                <div className="relative min-h-75 overflow-hidden lg:min-h-125">
-                  <Image
-                    src={featuredProject.image}
-                    alt={featuredProject.title}
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-105"
-                  />
+            <p className="max-w-md text-sm leading-7 text-muted-foreground md:text-base">
+              A selection of full-stack applications I have built while
+              exploring modern frontend architecture, authentication,
+              databases, payments, and real-world product workflows.
+            </p>
+          </div>
 
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+          {/* Featured Projects */}
+          <div className="space-y-8">
+            {featuredProjects.map((project, index) => {
+              const slug = slugify(project.title);
 
-                  <div className="absolute bottom-5 left-5">
-                    <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-xs text-gray-200 backdrop-blur-md">
-                      {featuredProject.category}
-                    </span>
-                  </div>
-                </div>
+              return (
+                <article
+                  key={project.title}
+                  className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-signal/40"
+                >
+                  <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
+                    {/* Project Image */}
+                    <div className="relative aspect-16/10 overflow-hidden border-b border-border lg:aspect-auto lg:min-h-115 lg:border-b-0 lg:border-r">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
 
-                {/* Content */}
-                <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
-                  <p className="mb-3 text-sm font-medium text-cyan-400">
-                    Frontend-focused Full-Stack Project
-                  </p>
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
-                  <h3 className="mb-5 text-3xl font-bold text-white md:text-4xl">
-                    {featuredProject.title}
-                  </h3>
-
-                  <p className="mb-7 leading-relaxed text-gray-400">
-                    {featuredProject.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="mb-8 flex flex-wrap gap-2">
-                    {featuredProject.tech?.map((technology) => (
-                      <span
-                        key={technology}
-                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-gray-300"
-                      >
-                        {technology}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Features */}
-                  {featuredProject.features?.length > 0 && (
-                    <div className="mb-8">
-                      <h4 className="mb-3 font-semibold text-white">
-                        Key Features
-                      </h4>
-
-                      <div className="grid gap-2 sm:grid-cols-2">
-                        {featuredProject.features
-                          .slice(0, 6)
-                          .map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-center gap-2 text-sm text-gray-400"
-                            >
-                              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                              {feature}
-                            </div>
-                          ))}
+                      {/* Project Number */}
+                      <div className="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-xs font-medium text-white backdrop-blur-md">
+                        {String(index + 1).padStart(2, "0")}
                       </div>
                     </div>
-                  )}
 
-                  {/* Actions */}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Link
-                      href={`/projects/${featuredProject.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
-                      className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-5 py-3 font-semibold text-black transition hover:bg-cyan-400"
-                    >
-                      Case Study
-                      <FaArrowRight className="text-sm" />
-                    </Link>
+                    {/* Project Content */}
+                    <div className="flex flex-col justify-between p-7 md:p-10">
+                      <div>
+                        <div className="mb-5 flex items-center justify-between gap-4">
+                          <span className="text-xs uppercase tracking-[0.2em] text-signal">
+                            {project.category}
+                          </span>
 
-                    {featuredProject.live && (
-                      <a
-                        href={featuredProject.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-gray-200 transition hover:border-cyan-500/50 hover:text-cyan-400"
-                      >
-                        <FaExternalLinkAlt className="text-xs" />
-                        Live Demo
-                      </a>
-                    )}
+                          <span className="text-xs text-muted-foreground">
+                            Featured
+                          </span>
+                        </div>
 
-                    {featuredProject.github && (
-                      <a
-                        href={featuredProject.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 text-gray-300 transition hover:border-cyan-500/50 hover:text-cyan-400"
-                        aria-label={`${featuredProject.title} GitHub repository`}
-                      >
-                        <FaGithub />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
+                        <h3 className="font-serif text-3xl text-foreground md:text-4xl">
+                          {project.title}
+                        </h3>
 
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {otherProjects.slice(0, 3).map((project, index) => (
-              <motion.article
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
-                whileHover={{ y: -6 }}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] transition-colors duration-300 hover:border-cyan-500/30"
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
+                        <p className="mt-5 text-sm leading-7 text-muted-foreground md:text-base">
+                          {project.description}
+                        </p>
 
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
+                        {/* Technologies */}
+                        <div className="mt-7 flex flex-wrap gap-2">
+                          {project.tech?.map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors duration-300 group-hover:border-signal/20"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
 
-                  <div className="absolute bottom-4 left-4">
-                    <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-gray-300 backdrop-blur-md">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
+                        {/* Features */}
+                        {project.features?.length > 0 && (
+                          <div className="mt-8">
+                            <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-foreground">
+                              Highlights
+                            </p>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="mb-3 text-xl font-bold text-white transition group-hover:text-cyan-400">
-                    {project.title}
-                  </h3>
+                            <ul className="grid gap-2 sm:grid-cols-2">
+                              {project.features
+                                .slice(0, 6)
+                                .map((feature) => (
+                                  <li
+                                    key={feature}
+                                    className="flex items-start gap-2 text-xs leading-5 text-muted-foreground"
+                                  >
+                                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-signal" />
+                                    {feature}
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
 
-                  <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-gray-400">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="mb-6 flex flex-wrap gap-2">
-                    {project.tech?.slice(0, 4).map((technology) => (
-                      <span
-                        key={technology}
-                        className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-gray-400"
-                      >
-                        {technology}
-                      </span>
-                    ))}
-
-                    {project.tech?.length > 4 && (
-                      <span className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-gray-500">
-                        +{project.tech.length - 4}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                    <Link
-                      href={`/projects/${project.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 transition hover:text-cyan-300"
-                    >
-                      View Details
-                      <FaArrowRight className="text-xs" />
-                    </Link>
-
-                    <div className="flex items-center gap-3">
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-400 transition hover:text-cyan-400"
-                          aria-label={`${project.title} live demo`}
+                      {/* Actions */}
+                      <div className="mt-10 flex flex-wrap items-center gap-3">
+                        {/* Case Study */}
+                        <Link
+                          href={`/projects/${slug}`}
+                          className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-all duration-300 hover:gap-3 hover:opacity-90"
                         >
-                          <FaExternalLinkAlt className="text-sm" />
-                        </a>
-                      )}
+                          Case Study
+                          <ArrowUpRight size={15} />
+                        </Link>
 
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-400 transition hover:text-cyan-400"
-                          aria-label={`${project.title} GitHub repository`}
+                        {/* Quick View */}
+                        <button
+                          type="button"
+                          onClick={() => openProjectModal(project)}
+                          className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-all duration-300 hover:border-signal/50 hover:text-signal"
                         >
-                          <FaGithub />
-                        </a>
-                      )}
+                          <Eye size={15} />
+                          Quick View
+                        </button>
+
+                        {/* Live Demo */}
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-muted-foreground transition-all duration-300 hover:border-signal/50 hover:text-foreground"
+                          >
+                            <ExternalLink size={14} />
+                            Live Demo
+                          </a>
+                        )}
+
+                        {/* GitHub */}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-muted-foreground transition-all duration-300 hover:border-signal/50 hover:text-foreground"
+                          >
+                            <Github size={15} />
+                            GitHub
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.article>
-            ))}
+                </article>
+              );
+            })}
           </div>
-        )}
 
-        {/* View All Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 flex justify-center"
-        >
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-3 rounded-xl border border-cyan-500/40 px-6 py-3.5 font-semibold text-cyan-400 transition duration-300 hover:border-cyan-400 hover:bg-cyan-500/10"
-          >
-            View All Projects
+          {/* All Projects */}
+          <div className="mt-14 flex justify-center">
+            <Link
+              href="/projects"
+              className="group inline-flex items-center gap-3 rounded-full border border-border px-7 py-3.5 text-sm text-foreground transition-all duration-300 hover:border-signal/50 hover:text-signal"
+            >
+              View All Projects
+              <ArrowUpRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <FaArrowRight className="text-sm transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+      {/* Project Modal */}
+      <ProjectModal
+        isOpen={isModalOpen}
+        setIsOpen={closeProjectModal}
+        project={selectedProject}
+      />
+    </>
   );
 }
+
