@@ -74,6 +74,8 @@ export default function Hero() {
               2000,
               "Next.js Developer",
               2000,
+              "MERN Stack Developer",
+              2000,
             ]}
             wrapper="span"
             speed={50}
