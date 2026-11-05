@@ -4,7 +4,7 @@ export const contactInfo = {
   github: "https://github.com/OmitHasanAdor",
 
   linkedin:
-    "https://www.linkedin.com/in/web-omit-hasan-link",
+    "https://www.linkedin.com/in/web-omit-hasan-ador-dot-link",
 
   availability: "Available for Freelance",
 

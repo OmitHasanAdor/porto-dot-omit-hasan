@@ -229,7 +229,7 @@ configuration:
 
 [![Email](https://img.shields.io/badge/Email-ibneshams05%40gmail.com-6fc6f0?style=flat-square&logo=gmail&logoColor=white)](mailto:ibneshams05@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-OmitHasanAdor-141b26?style=flat-square&logo=github&logoColor=white)](https://github.com/OmitHasanAdor)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-omit--hasan--ador-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/web-omit-hasan-link)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-omit--hasan--ador-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/web-omit-hasan-ador-dot-link)
 
 <sub>© 2026 Omit Hasan Ador — built with Next.js, Tailwind CSS & Framer Motion</sub>
 
